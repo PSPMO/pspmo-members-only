@@ -92,7 +92,7 @@ class Pspmo_Members_Only_Loader {
 	 * @param    int                  $accepted_args    Optional. The number of arguments that should be passed to the $callback. Default is 1
 	 */
 	public function add_filter( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
-		$this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );
+		// $this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );
 	}
 
 	/**
@@ -106,7 +106,7 @@ class Pspmo_Members_Only_Loader {
 	 * @param    int                  $accepted_args    Optional. The number of arguments that should be passed to the $callback. Default is 1
 	 */
 	public function add_shortcode( $shortcodeName, $component, $callback, $priority = 10, $accepted_args = 1 ) {
-		$this->shortcodes = $this->add( $this->shortcodes, $shortcodeName, $component, $callback, $priority, $accepted_args );
+		// $this->shortcodes = $this->add( $this->shortcodes, $shortcodeName, $component, $callback, $priority, $accepted_args );
 	}
 
 	/**

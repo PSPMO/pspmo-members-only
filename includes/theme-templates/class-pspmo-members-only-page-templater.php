@@ -78,7 +78,8 @@ if (!class_exists("Pspmo_Members_Only_Page_Templater")) {
   
       // Add your templates to this array.
       $this->templates = array(
-        './page-empty-blank-page.php' => 'Angular - Shortcode Only',
+        "./page-empty-blank-page.php" => "Angular - Shortcode Only",
+        "./page-empty-with-header-footer.php" => "Angular - Blank with Header"
       );
         
     } 
