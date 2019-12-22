@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "phpinclude": "ng build --prod && rm -rf docs && mv dist/angular docs"
   },
   "private": true,
   "dependencies": {

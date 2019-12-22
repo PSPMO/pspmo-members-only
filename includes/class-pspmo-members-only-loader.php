@@ -74,7 +74,11 @@ class Pspmo_Members_Only_Loader {
 	 * @param    int                  $accepted_args    Optional. The number of arguments that should be passed to the $callback. Default is 1.
 	 */
 	public function add_action( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
-		$this->actions = $this->add( $this->actions, $hook, $component, $callback, $priority, $accepted_args );
+		// $this->actions = $this->add( $this->actions, $hook, $component, $callback, $priority, $accepted_args );
+
+		// Register empty theme template. Used to include Angular.
+		require(plugin_dir_path( __FILE__ ) . "/theme-templates/class-pspmo-members-only-page-templater.php");
+		$this->actions = $this->add( $this->actions, "plugins_loaded", "Pspmo_Members_Only_Page_Templater", "get_instance", $priority, $accepted_args );
 	}
 
 	/**
@@ -95,14 +99,14 @@ class Pspmo_Members_Only_Loader {
 	 * Adds a new shortcode to the collection to be registered with WordPress.
 	 * 
 	 * @since    1.0.0
-	 * @param    string               $shortcodeName             The name of the WordPress filter that is being registered.
-	 * @param    object               $component        A reference to the instance of the object on which the filter is defined.
+	 * @param    string               $shortcodeName    The name of the WordPress shortcode name that is being registered.
+	 * @param    object               $component        A reference to the instance of the object on which the shortcode is defined.
 	 * @param    string               $callback         The name of the function definition on the $component.
 	 * @param    int                  $priority         Optional. The priority at which the function should be fired. Default is 10.
 	 * @param    int                  $accepted_args    Optional. The number of arguments that should be passed to the $callback. Default is 1
 	 */
 	public function add_shortcode( $shortcodeName, $component, $callback, $priority = 10, $accepted_args = 1 ) {
-		$this->shortcodes = $this->add( $this->filters, $shortcodeName, $component, $callback, $priority, $accepted_args );
+		$this->shortcodes = $this->add( $this->shortcodes, $shortcodeName, $component, $callback, $priority, $accepted_args );
 	}
 
 	/**
@@ -149,8 +153,8 @@ class Pspmo_Members_Only_Loader {
 		}
 
 		// Ignore the array name "hook".  It's actually the shortcode name.
-		foreach ( $this->shortcodes as $hook ) {
-			add_shortcode( $hook['hook'], array( $hook['component'], $hook['callback'] ) );
+		foreach ( $this->shortcodes as $shortcodes ) {
+			add_shortcode( $shortcodes['hook'], array( $shortcodes['component'], $shortcodes['callback'] ) );
 		}
 
 	}
