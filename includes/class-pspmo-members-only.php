@@ -157,6 +157,9 @@ class Pspmo_Members_Only {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
+		// This loads a theme template that is created for an Angular shortcode.
+		$this->loader->add_action( 'plugins_loaded', $plugin_admin, "register_angular_templates" );
+
 	}
 
 	/**
@@ -172,6 +175,9 @@ class Pspmo_Members_Only {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+
+		// Register additional theme templates.
+		$this->loader->add_action( "init", $plugin_public, "register_angular_shortcodes" );
 
 	}
 

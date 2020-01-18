@@ -100,4 +100,11 @@ class Pspmo_Members_Only_Admin {
 
 	}
 
+	/**
+	 * Registers custom themes that Gatsby can use.
+	 */
+	public function register_angular_templates() {
+		require( plugin_dir_path( __FILE__) . "theme-templates/class-pspmo-members-only-page-templater.php" );
+		add_action( "after_setup_theme", array("Pspmo_Members_Only_Page_Templater", "get_instance"), 10, 2 );
+	} // register_themes()
 }

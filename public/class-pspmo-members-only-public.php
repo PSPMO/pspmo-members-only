@@ -100,4 +100,10 @@ class Pspmo_Members_Only_Public {
 
 	}
 
+	public function register_angular_shortcodes() {
+		include_once(plugin_dir_path( __FILE__ ) . "partials/class-pspmo-members-only-angular-shortcodes.php");
+
+		add_shortcode("ng-members-only", array("Pspmo_Members_Only_Angular_Shortcodes", "wp_ng_fusion"));
+	}
+
 }
